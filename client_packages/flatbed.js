@@ -314,7 +314,10 @@ function attachRope(flatbed, targetVeh) {
 
   if (targetVeh === false) {
     if (flatbed.bed.rope == null) return
-    mp.game.rope.deleteRope(flatbed.bed.rope)
+      // before delete detach the rope
+      mp.game.rope.detachRopeFromEntity(flatbed.bed.rope, flatbed.attachedVehicle.handle);
+      mp.game.rope.detachRopeFromEntity(flatbed.bed.rope, flatbed.handle);
+      mp.game.rope.deleteRope(flatbed.bed.rope)
     delete flatbed.bed.rope
 
     return
